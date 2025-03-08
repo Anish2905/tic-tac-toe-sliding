@@ -12,6 +12,10 @@
     <h1>Tic-Tac-Toe</h1>
   </div>
   
+  <!-- Scoreboard (will display player names once set) -->
+  <div id="scoreboard">X: 0 | O: 0</div>
+  
+  <!-- Player Setup -->
   <div class="player-setup" id="player-setup">
     <h2>Enter Player Names</h2>
     <input type="text" id="player-x" placeholder="Player X (goes first)" required>
@@ -19,15 +23,24 @@
     <button id="start-game-btn">Start Game</button>
   </div>
   
+  <!-- Game Area -->
   <div class="game-container game-area" id="game-area">
     <div class="player-info">
       Current Player: <span class="name-display" id="current-player-name"></span>
       (<span class="current-player" id="player-display">X</span>)
     </div>
     <div class="board" id="board"></div>
-    <button onclick="resetGame()">Restart Game</button>
-    <button onclick="undoMove()">Undo Move</button>
-    <button onclick="newPlayers()">New Players</button>
+    <button id="reset-btn">Restart Game</button>
+    <button id="undo-btn">Undo Move</button>
+    <button id="new-players-btn">New Players</button>
+  </div>
+
+  <!-- Modal for game notifications -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="modal-close" class="modal-close">&times;</span>
+      <p id="modal-message"></p>
+    </div>
   </div>
 
   <script src="script.js"></script>
