@@ -1,4 +1,4 @@
-/* Only Black Theme (default theme) */
+/* Default (Dark) Theme Variables */
 :root {
     --glow-color: rgb(0, 255, 255);
     --glow-spread-color: rgba(0, 255, 255, 0.4);
@@ -9,7 +9,7 @@
     --x-color: rgb(255, 50, 50);
     --o-color: rgb(50, 255, 255);
   }
-  
+    
   body {
     background: var(--bg-color);
     color: var(--text-color);
@@ -25,7 +25,7 @@
     transition: all 0.5s ease;
     line-height: 1.6;
   }
-  
+    
   h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 4.5vmax;
@@ -36,7 +36,7 @@
     font-weight: 700;
     transition: text-shadow 0.5s ease;
   }
-  
+    
   .player-info {
     margin-bottom: 2vmin;
     font-size: 3vmin;
@@ -44,12 +44,12 @@
     transition: text-shadow 0.5s ease;
     font-family: 'Montserrat', sans-serif;
   }
-  
+    
   .current-player {
     font-weight: bold;
     animation: pulseText 1.5s infinite alternate;
   }
-  
+    
   @keyframes pulseText {
     0% { 
       opacity: 0.8; 
@@ -60,14 +60,14 @@
       text-shadow: 0 0 1em currentColor, 0 0 0.5em currentColor;
     }
   }
-  
+    
   .game-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
   }
-  
+    
   .board {
     display: grid;
     grid-template-columns: repeat(3, 20vmin);
@@ -75,7 +75,7 @@
     gap: 1.5vmin;
     margin: 2vmin 0;
   }
-  
+    
   .cell {
     width: 20vmin;
     height: 20vmin;
@@ -93,14 +93,16 @@
     transition: all 0.3s;
     border-radius: 0.6em;
     overflow: hidden;
+    z-index: 1;
   }
-  
+    
   .cell:hover {
     background: rgba(20, 20, 20, 0.4);
     box-shadow: 0 0 1.2em 0.2em var(--glow-spread-color);
   }
-  
-  .cell.x::before, .cell.x::after {
+    
+  .cell.x::before,
+  .cell.x::after {
     content: '';
     position: absolute;
     width: 10%;
@@ -109,16 +111,17 @@
     border-radius: 1vmin;
     box-shadow: 0 0 1em 0.2em var(--x-color);
     transition: background-color 0.5s ease, box-shadow 0.5s ease;
+    z-index: 2;
   }
-  
+    
   .cell.x::before {
     transform: rotate(45deg);
   }
-  
+    
   .cell.x::after {
     transform: rotate(-45deg);
   }
-  
+    
   .cell.o::before {
     content: '';
     position: absolute;
@@ -128,28 +131,27 @@
     border-radius: 50%;
     box-shadow: 0 0 1em 0.2em var(--o-color);
     transition: border-color 0.5s ease, box-shadow 0.5s ease;
+    z-index: 2;
   }
-  
+    
   .win-line {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.15);
-    animation: winGlow 1.5s infinite alternate;
-    border-radius: 0.6em;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border: 3px solid var(--enhanced-glow-color);
+    border-radius: inherit;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    animation: winPulse 1.5s infinite ease-in-out;
   }
-  
-  @keyframes winGlow {
-    0% { 
-      box-shadow: inset 0 0 0.8em 0.2em var(--enhanced-glow-color);
-      background: rgba(150, 255, 255, 0.1);
-    }
-    100% { 
-      box-shadow: inset 0 0 1.5em 0.4em var(--enhanced-glow-color);
-      background: rgba(150, 255, 255, 0.2);
-    }
+    
+  @keyframes winPulse {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
   }
-  
+    
   button {
     background-color: var(--btn-color);
     color: var(--text-color);
@@ -164,17 +166,17 @@
     box-shadow: 0 0 0.5em 0.1em var(--glow-spread-color);
     font-family: 'Montserrat', sans-serif;
   }
-  
+    
   button:hover {
     background-color: var(--glow-color);
     transform: scale(1.05);
     box-shadow: 0 0 1em 0.2em var(--glow-spread-color);
   }
-  
+    
   button:active {
     transform: scale(0.95);
   }
-  
+    
   .player-setup {
     display: flex;
     flex-direction: column;
@@ -184,7 +186,7 @@
     max-width: 400px;
     font-family: 'Roboto', sans-serif;
   }
-  
+    
   .player-setup input {
     padding: 2vmin;
     margin: 1vmin 0;
@@ -198,11 +200,11 @@
     box-shadow: 0 0 0.3em 0.05em var(--glow-spread-color);
     transition: border-color 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease;
   }
-  
+    
   .player-setup input:focus {
     box-shadow: 0 0 0.8em 0.15em var(--glow-color);
   }
-  
+    
   .player-setup h2 {
     margin-bottom: 15px;
     font-size: 3vmin;
@@ -210,59 +212,101 @@
     transition: text-shadow 0.5s ease;
     font-family: 'Montserrat', sans-serif;
   }
-  
+    
   @media (max-width: 600px) {
     h1 {
       font-size: 6vmax;
       margin: 0.3em 0;
     }
-  
     .board {
       grid-template-columns: repeat(3, 25vmin);
       grid-template-rows: repeat(3, 25vmin);
       gap: 2vmin;
     }
-  
     .cell {
       width: 25vmin;
       height: 25vmin;
       font-size: 10vmin;
     }
-  
     button {
       padding: 3vmin 6vmin;
       font-size: 3.5vmin;
       width: 80%;
       max-width: 300px;
     }
-  
     .player-info {
       font-size: 4vmin;
     }
-  
     .player-setup {
       width: 90%;
     }
-  
     .player-setup input {
       font-size: 4vmin;
       padding: 3vmin;
     }
-  
     .player-setup h2 {
       font-size: 4vmin;
     }
   }
-  
+    
   @media (max-width: 400px) {
     .board {
       grid-template-columns: repeat(3, 28vmin);
       grid-template-rows: repeat(3, 28vmin);
     }
-  
     .cell {
       width: 28vmin;
       height: 28vmin;
     }
+  }
+  
+  /* Modal styling matching the theme */
+  .modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+  }
+  .modal-content {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid var(--glow-color);
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 1em var(--glow-color);
+  }
+  .modal-close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  /* More prominent pulsing overlay for move removal */
+  .pulse-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.2);
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 3;
+    animation: overlayPulse 2s infinite ease-in-out;
+  }
+  @keyframes overlayPulse {
+    0% { opacity: 0.2; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.2; }
   }
   
