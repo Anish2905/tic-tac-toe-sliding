@@ -75,7 +75,7 @@ A modern, responsive implementation of the classic game with glowing neon aesthe
 
 ## License 📄
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
+MAMA TUMI BOKACHODA
 ---
 
 **Created by [Your Name]**  
