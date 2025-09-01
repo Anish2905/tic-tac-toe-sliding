@@ -24,4 +24,4 @@ _No additional dependencies or build tools are required._
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/tic-tac-toe-sliding.git
+   git clone https://github.com/Anish2905/tic-tac-toe-sliding.git
